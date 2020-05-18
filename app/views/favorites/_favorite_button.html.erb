@@ -1,0 +1,17 @@
+<% if current_user.favorite?(comment) %>
+
+  <!-- Unfavarite -->
+  <%= form_with(model: current_user.favorites.find_by(comment_id: comment.id), local: true, method: :delete) do |f| %>
+    <%= hidden_field_tag :comment_id, comment.id %>
+    <%= f.submit 'お気に入り解除', class: 'btn btn-danger btn-sm' %>
+  <% end %>
+  
+<% else %>
+
+  <!-- Favarite -->
+  <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+    <%= hidden_field_tag :comment_id, comment.id %>
+    <%= f.submit 'お気に入り登録', class: 'btn btn-success btn-sm' %>
+  <% end %>
+  
+<% end %>

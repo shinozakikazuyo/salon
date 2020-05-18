@@ -1,0 +1,22 @@
+<div class="row">
+
+  <aside class="col-md-4 col-sm-6" align="center">
+    <%# app/assets/images %>
+    <%= image_tag "top.png", alt: "トップページ画像", id: "assets", class: "image", width: "450px", height: "450px" %>
+  </aside>
+  
+  <div class="col-md-8 col-sm-12">
+    
+    <div style="margin-top: 30px;">
+      <h1 align="center">日本料理サロン</h1><br>
+      <p font-size="14px" align="center">季節の日本料理をお伝えしております。<p>
+    </div>
+    
+    <div style="font-size: 18px; text-align: center; margin-top: 200px;">
+      <h2 font-size="16px" align="center">最新情報</h2>
+      <%= render 'notices/show' %>
+    </div>
+  
+  </div>
+  
+</div>

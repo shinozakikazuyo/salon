@@ -1,0 +1,42 @@
+<div>
+  <div>
+    <h1 align="center">お気に入り</h1><br>
+  </div>
+  
+  <div style="margin-top: 50px;" align="left">
+    
+    <ul class="list-unstyled">
+      <% @favorites.each do |favorite| %>
+        <% if current_user.id == favorite.user_id  %>
+          <p font-size="18px;"><%= favorite.comment_id %></p>
+          <p font-size="18px;"><%= favorite.content %></p>
+      
+          <% if current_user.favorite(favorite) %>
+  
+            <!-- Unfavarite -->
+            <%= form_with(model: current_user.favorites.find_by(comment_id: favorite.comment_id), local: true, method: :delete) do |f| %>
+              <%= hidden_field_tag :comment_id, favorite.comment_id %>
+              <%= f.submit 'お気に入り解除', class: 'btn btn-danger btn-sm' %>
+            <% end %>
+            
+          <% else %>
+          
+            <!-- Favarite -->
+            <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+              <%= hidden_field_tag :comment_id, favorite.comment_id %>
+              <%= f.submit 'お気に入り登録', class: 'btn btn-success btn-sm' %>
+            <% end %>
+            
+          <% end %>
+
+        <% end %>
+      <% end %>
+    </ul>
+    
+  </div>
+  <div style="margin-top: 50px;">
+    <%= link_to "レシピ一覧ページへ戻る", root_url %>
+  </div>
+</div>
+
+

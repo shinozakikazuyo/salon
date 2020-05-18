@@ -1,0 +1,26 @@
+<header class="mb-4">
+  <nav class="navbar navbar-expand-sm bg-white text-dark">
+    
+    <!-- 画面が小さくなった際のトグルボタン -->
+    <a class="navbar-brand" href="/"></a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+      <!-- ログイン -->
+      <% if logged_in? %>
+        <li class="nav-item"><%= link_to '生徒様のお声', comments_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'お気に入り', '/users/show', class: 'nav-link' %></li>
+        <li class="nav-item" style="padding-top: 8px;"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+      <!-- ログイン前 -->
+      <% else %>
+        <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to '会員登録', signup_path, class: 'nav-link' %></li>
+      <% end %>
+      </ul>
+    </div>
+        
+  </nav>
+</header>
