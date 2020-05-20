@@ -9,4 +9,8 @@ class Comment < ApplicationRecord
   #一対多
   has_many :favorites
   has_many :users
+  def self.all_with_recipe
+    # class method
+    self.includes(:recipe).joins(:recipe).select("comments.id, recipes.title, comments.content, comments.user_id").order(id: :desc)
+  end
 end

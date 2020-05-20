@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show, :favorites]
   
   def show
-    @favorites = Favorite.joins(:comment).select("comments.content, favorites.comment_id, favorites.user_id").order(id: :desc).page(params[:page])
-    #@favorites = favorites.joins(:recipe).select("recipes.title, comments.content, favorites.user_id").order(id: :desc).page(params[:page])
+    @favorites = Favorite.includes(comment: :recipe).joins(comment: :recipe).select("comments.content, favorites.comment_id, favorites.user_id, recipes.title").order(id: :desc).page(params[:page])
+    redirect_to recipes_path
   end
 
   def new
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      log_in @user
       flash[:success] = 'ユーザを登録しました。'
       redirect_to @user
     else
@@ -27,6 +28,11 @@ class UsersController < ApplicationController
   def favorites
     @user = User.find(params[:id])
     @favorites = @user.favorites.page(params[:page])
+  end
+  
+  def likes
+    @favorites = Favorite.includes(comment: :recipe).joins(comment: :recipe).select("comments.content, favorites.comment_id, favorites.user_id, recipes.title").order(id: :desc).page(params[:page])
+    render :show
   end
 
   

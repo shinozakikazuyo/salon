@@ -12,7 +12,7 @@
       <!-- ログイン -->
       <% if logged_in? %>
         <li class="nav-item"><%= link_to '生徒様のお声', comments_path, class: 'nav-link' %></li>
-        <li class="nav-item"><%= link_to 'お気に入り', '/users/show', class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'お気に入り', likes_user_path(current_user), class: 'nav-link' %></li>
         <li class="nav-item" style="padding-top: 8px;"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
       <!-- ログイン前 -->
       <% else %>

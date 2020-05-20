@@ -6,10 +6,11 @@
   <div style="margin-top: 50px;" align="left">
     
     <ul class="list-unstyled">
+      
       <% @favorites.each do |favorite| %>
         <% if current_user.id == favorite.user_id  %>
-          <p font-size="18px;"><%= favorite.comment_id %></p>
-          <p font-size="18px;"><%= favorite.content %></p>
+          <p font-size="18px;"><%= favorite.comment.recipe.title %></p>
+          <p font-size="18px;"><%= favorite.comment.content %></p>
       
           <% if current_user.favorite(favorite) %>
   

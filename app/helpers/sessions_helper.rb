@@ -8,4 +8,9 @@ module SessionsHelper
     !!current_user
   end
   
+  #会員登録した際にそのままログインできるよう処理を追加
+  def log_in(user)
+    session[:user_id] = user.id
+  end
+  
 end

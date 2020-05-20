@@ -1,16 +1,16 @@
 <div>
-  <div>
-    <h1 align="center">日本料理サロン</h1><br>
+  <div style="margin-bottom: 20px;">
+    <h1 align="center" style="font-size: 30px;">日本料理サロン【公開レシピ】</h1><br>
   </div>
   
   <div>
-    <dl style="font-size: 18px; text-align: left; list-style: none;">
+    <div style="font-size: 18px; text-align: left; list-style: none;">
       <% @recipes.each do |recipe| %>
         <ul align="center">
           <p><%= link_to recipe.title, recipe %></p>
         </ul>
       <% end %>
-    </dl>
+    </div>
   </div>
   <%= paginate @recipes %>
 </div>

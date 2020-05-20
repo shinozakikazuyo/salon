@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def index
-    @comments = Comment.joins(:recipe).select("comments.id, recipes.title, comments.content, comments.user_id").order(id: :desc).page(params[:page])
+    @comments = Comment.all_with_recipe.page(params[:page]).per(20)
   end
   
   def create
@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     else
       @comments = current_user.comments.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'メッセージの投稿に失敗しました。'
-      render 'comments/index'
+      redirect_to comments_path
     end
   end
   
