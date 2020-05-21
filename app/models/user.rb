@@ -6,8 +6,8 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
-  has_many :comments
-  has_many :favorites
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   #お気に入り登録
   has_many :favorite_comment, through: :favorites, source: :comment

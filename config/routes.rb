@@ -25,8 +25,9 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy, :index]
   resources :favorites, only: [:create, :destroy]
   
+  #管理者用のルーティング
   #namespace :admin do
-  #  resources :comments
+  #  resources :notices
   #end
   
 end
