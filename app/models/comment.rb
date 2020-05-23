@@ -15,4 +15,13 @@ class Comment < ApplicationRecord
     self.includes(:recipe).joins(:recipe).select("comments.id, recipes.title, comments.content, comments.user_id").order(id: :desc)
   end
   
+  def self.search(search) 
+    if search
+      self.includes(:recipe).joins(:recipe).select("comments.id, recipes.title, comments.content, comments.user_id").order(id: :desc).where(['title LIKE ?', "%#{search}%"])
+    else
+      #全て表示。
+      self.includes(:recipe).joins(:recipe).select("comments.id, recipes.title, comments.content, comments.user_id").order(id: :desc) 
+    end
+  end
+  
 end

@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def index
-    @comments = Comment.all_with_recipe.page(params[:page]).per(20)
+    #@comments = Comment.all_with_recipe.page(params[:page]).per(20)
+    @comments = Comment.search(params[:search]).page(params[:page]).per(20)
   end
   
   def create

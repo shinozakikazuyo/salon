@@ -1,6 +1,6 @@
 <div>
   <div>
-    <h1 align="center">お気に入り</h1><br>
+    <h1 style="text-align:center;">お気に入り</h1><br>
   </div>
   
   <div style="margin-top: 50px;" align="left">
@@ -9,8 +9,8 @@
       
       <% @favorites.each do |favorite| %>
         <% if current_user.id == favorite.user_id  %>
-          <p font-size="18px;"><%= favorite.comment.recipe.title %></p>
-          <p font-size="18px;"><%= favorite.comment.content %></p>
+          <p><%= favorite.comment.recipe.title %></p>
+          <p><%= favorite.comment.content %></p>
       
           <% if current_user.favorite(favorite) %>
   
