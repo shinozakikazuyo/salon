@@ -6,6 +6,13 @@ class CommentsController < ApplicationController
   def index
     #@comments = Comment.all_with_recipe.page(params[:page]).per(20)
     @comments = Comment.search(params[:search]).page(params[:page]).per(20)
+    
+    if @comments.empty?
+      flash.now[:danger] = '検索結果はありませんでした。'
+    else
+      
+    end
+    
   end
   
   def create
